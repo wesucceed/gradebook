@@ -1,0 +1,64 @@
+/* Grade interpretation css */
+.GradeInterpretation {
+    border: 2px solid white;
+}
+
+.GradeInterpretation table{
+    border: 1px solid white;
+}
+
+.GradeInterpretation p{
+    border: 1px solid white;
+    margin: 0;
+    padding-top: 16px;
+    padding-bottom: 16px;
+
+}
+
+
+/* Terminal report css  */
+.TerminalReport {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.TerminalReport div {
+    margin-bottom: 30px;
+}
+
+.TerminalReport div:last-child {
+    margin-right: 0;
+}
+
+
+
+/* Teacher Remark css */
+/* Apply general styling to the table */
+.TeacherRemark table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px; /* Add margin as needed */
+  }
+  
+  /* Apply styling to table headers */
+.TeacherRemark table th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  /* Apply styling to table cells */
+.TeacherRemark table td{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  /* Add alternating row background color for better readability */
+/* .TeacherRemark table tbody tr:nth-child(even) {
+    background-color: ;
+  } */
+  
+
+  

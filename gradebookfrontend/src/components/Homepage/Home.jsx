@@ -1,13 +1,14 @@
 import React from "react";
 // import NavBar from "../NavBar";
-import Table from "../Table/Table";
+import TerminalReport from "../TerminalReport/TerminalReport";
+import TeacherRemark from "../TerminalReport/TeacherRemark";
 
 
 const Home = () => {
     return (
         <div className="Home">
         {/* <NavBar></NavBar> */}
-        <Table></Table>
+        <TerminalReport></TerminalReport>
         </div>
     )
 }
