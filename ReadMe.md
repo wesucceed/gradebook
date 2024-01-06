@@ -1,2 +1,2 @@
 # gradebook
-Grade for Immaculate Hearts of Mary
+Gradebook for Immaculate Hearts of Mary
