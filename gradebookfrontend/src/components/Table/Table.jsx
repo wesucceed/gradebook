@@ -10,7 +10,8 @@ const Table = () => {
 	const position = ['P', '0', 'S', 'I', 'T', 'I', 'O', 'N']
 
 	const student_data = [
-		{ id: 1, name: "Ambrose Blay", exercise_score: 40, test_score: 40, homework_score: 40, exam_score: 40 }
+		{ id: 1, name: "Ambrose Blay", exercise_score: 40, test_score: 40, homework_score: 40, exam_score: 40 },
+		{ id: 1, name: "Nathan Ake", exercise_score: 40, test_score: 40, homework_score: 40, exam_score: 40 }
 	]
 
 	const [formData, setFormData] = useState({
@@ -51,6 +52,7 @@ const Table = () => {
 
 	const handleShow = (value) => {
 		setShowForm(value)
+		console.log('do re mi fa so', student_data)
 	}
 
 	const handleClear = () => {
@@ -66,11 +68,13 @@ const Table = () => {
 			<button className='button' onClick={() => handleShow(true)}>Add Entry</button>
 			<div className={showForm === true ? "form_modal show_form" : "form_modal"}>
 
-				<div >
-					<form action="/" method='post' className='form_container' onSubmit={handleSubmit}>
-						<div className="close">
-							<button onClick={() => handleShow(!showForm)}>Close</button>
-						</div>
+				<div className='form_container'>
+
+					<div className="close">
+						<button onClick={() => handleShow(false)}>Close</button>
+					</div>
+
+					<form action="/" method='post' onSubmit={handleSubmit}>
 						<div className='form_field'>
 							<label htmlFor="name">Student Name</label>
 							<input type="text" id='name' name='name' value={formData.name} onChange={handleChange} placeholder='Enter Student Name' />
@@ -118,7 +122,7 @@ const Table = () => {
 						</tr>
 						<tr className="numbers">
 							{numbers.map((number) => {
-								return (<td key = {number.toString()} className={`number number-${number}`}>
+								return (<td key={number.toString()} className={`number number-${number}`}>
 									<span>{number}</span>
 								</td>
 								)
@@ -137,17 +141,15 @@ const Table = () => {
 							<td className="td-container">
 								{position.map((letter, i) => {
 									return (
-										<div key = {letter + i.toString()} className='sub_heading position'>
+										<div key={letter + i.toString()} className='sub_heading position'>
 											<span>{letter}</span>
 										</div>
 									)
 								})}
 							</td>
 						</tr>
-						{student_data.map(({ id, name, exercise_score, test_score, homework_score, exam_score }) => {
-							return <Entry key = {id.toString()} props={{ name: name, exercise_score: exercise_score, test_score: test_score, homework_score: homework_score, exam_score: exam_score }} />
-						})}
 					</thead>
+					< Entry props={student_data} />
 				</table>
 			</section>
 		</div>
