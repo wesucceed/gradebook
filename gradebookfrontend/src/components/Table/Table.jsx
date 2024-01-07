@@ -10,7 +10,7 @@ const Table = () => {
 	const position = ['P', '0', 'S', 'I', 'T', 'I', 'O', 'N']
 
 	const student_data = [
-		{name: "Ambrose Blay", exercise_score: 40, test_score: 40, homework_score: 40, exam_score: 40}
+		{ id: 1, name: "Ambrose Blay", exercise_score: 40, test_score: 40, homework_score: 40, exam_score: 40 }
 	]
 
 	const [formData, setFormData] = useState({
@@ -40,7 +40,7 @@ const Table = () => {
 			homework_score: formData.homework_score,
 			exam_score: formData.exam_score
 		};
-		
+
 
 		// Perform any other actions with the jsObject as needed
 		student_data.push(student)
@@ -53,7 +53,7 @@ const Table = () => {
 		setShowForm(value)
 	}
 
-	const handleClear = () =>{
+	const handleClear = () => {
 
 		document.getElementById('name').value = '';
 		document.getElementById('exercise_score').value = '';
@@ -65,29 +65,30 @@ const Table = () => {
 		<div>
 			<button className='button' onClick={() => handleShow(true)}>Add Entry</button>
 			<div className={showForm === true ? "form_modal show_form" : "form_modal"}>
-				<div className="close">
-					<button onClick={() => handleShow(!showForm)}>Close</button>
-				</div>
+
 				<div >
-					<form action="" className='form_container' onSubmit={handleSubmit}>
+					<form action="/" method='post' className='form_container' onSubmit={handleSubmit}>
+						<div className="close">
+							<button onClick={() => handleShow(!showForm)}>Close</button>
+						</div>
 						<div className='form_field'>
-							<label htmlFor="">Student Name</label>
+							<label htmlFor="name">Student Name</label>
 							<input type="text" id='name' name='name' value={formData.name} onChange={handleChange} placeholder='Enter Student Name' />
 						</div>
 						<div className='form_field'>
-							<label htmlFor="">Exercise Assignment</label>
+							<label htmlFor="exercise_score">Exercise Assignment</label>
 							<input type="text" id='exercise_score' name='exercise_score' value={formData.exercise_score} onChange={handleChange} placeholder='Enter Score' />
 						</div>
 						<div className='form_field'>
-							<label htmlFor="">Class Test</label>
+							<label htmlFor="test_score">Class Test</label>
 							<input type="text" id='test_score' name="test_score" value={formData.test_score} onChange={handleChange} placeholder='Enter Score' />
 						</div>
 						<div className='form_field'>
-							<label htmlFor="">Home Work</label>
+							<label htmlFor="homework_score">Home Work</label>
 							<input type="text" id='homework_score' name='homework_score' value={formData.homework_score} onChange={handleChange} placeholder='Enter Score' />
 						</div>
 						<div className='form_field'>
-							<label htmlFor="">Term Exam</label>
+							<label htmlFor="exam_score">Term Exam</label>
 							<input type="text" id='exam_score' name="exam_score" value={formData.exam_score} onChange={handleChange} placeholder='Enter Score' />
 						</div>
 						<button className='form_button' onClick={() => handleClear()}>Add Entry</button>
@@ -117,7 +118,7 @@ const Table = () => {
 						</tr>
 						<tr className="numbers">
 							{numbers.map((number) => {
-								return (<td className={`number number-${number}`}>
+								return (<td key = {number.toString()} className={`number number-${number}`}>
 									<span>{number}</span>
 								</td>
 								)
@@ -134,17 +135,17 @@ const Table = () => {
 								)
 							})}
 							<td className="td-container">
-								{position.map(letter => {
+								{position.map((letter, i) => {
 									return (
-										<div className='sub_heading position'>
+										<div key = {letter + i.toString()} className='sub_heading position'>
 											<span>{letter}</span>
 										</div>
 									)
 								})}
 							</td>
 						</tr>
-						{student_data.map(({name, exercise_score, test_score, homework_score, exam_score}) => {
-							return <Entry props = {{name: name, exercise_score: exercise_score, test_score: test_score, homework_score: homework_score, exam_score: exam_score}}/>
+						{student_data.map(({ id, name, exercise_score, test_score, homework_score, exam_score }) => {
+							return <Entry key = {id.toString()} props={{ name: name, exercise_score: exercise_score, test_score: test_score, homework_score: homework_score, exam_score: exam_score }} />
 						})}
 					</thead>
 				</table>
