@@ -1,19 +1,21 @@
 /* Grade interpretation css */
-.GradeInterpretation {
-    border: 2px solid white;
-}
+.GradeInterpretation table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px; /* Add margin as needed */
+  }
 
-.GradeInterpretation table{
-    border: 1px solid white;
-}
+.GradeInterpretation table th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+  }
 
-.GradeInterpretation p{
-    border: 1px solid white;
-    margin: 0;
-    padding-top: 16px;
-    padding-bottom: 16px;
-
-}
+.GradeInterpretation table td{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
 
 
 /* Terminal report css  */
@@ -61,4 +63,51 @@
   } */
   
 
-  
+  /* Grade css */
+.Grade table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px; /* Add margin as needed */
+  }
+
+.Grade table th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+  }
+
+.Grade table td{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+
+  /* Student Info css */
+  .StudentInfo table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px; /* Add margin as needed */
+  }
+
+.StudentInfo table th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+  }
+
+.StudentInfo table td{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+
+/* School Info css */
+
+.SchoolInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+

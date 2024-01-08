@@ -49,3 +49,18 @@ const GradeIntepretation = (props) => {
 export default GradeIntepretation;
 
 
+
+
+// import React from 'react';
+
+// const SchoolInfo = (props) => {
+
+//   return (
+//     <div className='SchoolInfo'>
+//     </div>
+//   );
+// };
+
+// export default SchoolInfo;
+
+

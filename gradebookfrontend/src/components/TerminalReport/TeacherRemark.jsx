@@ -8,9 +8,11 @@ const TeacherRemark = (props) => {
     <div className='TeacherRemark'>
         <table>
         <thead>
+            <tr>
             <th>Attendance: 54 Out of 60</th>
             <th>PROMOTED TO 3 SCIENCE 6</th>
             <th>AGGREGATE OF BEST SIX RESULTS: 18</th>
+            </tr>
         </thead>
         <tbody>
             <tr>
