@@ -1,56 +1,160 @@
-import React from 'react';
+import React, { useState } from 'react'
+import './table.css'
+import Entry from './Entry'
 
 const Table = () => {
-  const data = [
-    //BACKEND: data from backend
-    { id: 1, name: 'John', exercise: 25, subtotal: 'john@example.com', class_test: 12, homework:43, subtotal:43, total_class_score:43, to_30:453, term_exam:432, to_70:4324, overall:324, position:343},
-    { id: 2, name: 'John', exercise: 25, subtotal: 'john@example.com', class_test: 12, homework:43, subtotal:43, total_class_score:43, to_30:453, term_exam:432, to_70:4324, overall:324, position:343}
-  ];
+	const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+	const sub_headings = ['STUDENT NAME', 'EXERCISE ASSIGNMENT', 'SUB TOTAL 40',
+		'CLASS TEST', 'SUB TOTAL 40', 'HOME WORK', 'SUB TOTAL 20', 'TOTAL CLASS SCORE 100',
+		'30%', 'TERM EXAM', '70%', 'OVER ALL TOTAL 30% + 70%', 'AVERAGE SCORE', 'GRADE']
+	const position = ['P', '0', 'S', 'I', 'T', 'I', 'O', 'N']
 
-  return (
-    <div>
-        //HEADING
+	const student_data = [
+		{ id: 1, name: "Ambrose Blay", exercise_score: 40, test_score: 40, homework_score: 40, exam_score: 40 },
+		{ id: 1, name: "Nathan Ake", exercise_score: 40, test_score: 40, homework_score: 40, exam_score: 40 }
+	]
 
-      <h2>Sample Table</h2>
-      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
-        <thead>
-          <tr>
-            <th style={{ border: '1px solid white', padding: '8px' }}>ID</th>
-            <th style={{ border: '1px solid white', padding: '8px' }}>NAME</th>
-            <th style={{ border: '1px solid white', padding: '8px' }}>EXERCISE</th>
-            <th style={{ border: '1px solid white', padding: '8px' }}>CLASS TEST</th>
-            <th style={{ border: '1px solid white', padding: '8px' }}>HOMEWORK</th>
-            <th style={{ border: '1px solid white', padding: '8px' }}>TOTAL CLASS SCORE</th>
-            <th style={{ border: '1px solid white', padding: '8px' }}>30%</th>
-            <th style={{ border: '1px solid white', padding: '8px' }}>TERM EXAM</th>
-            <th style={{ border: '1px solid white', padding: '8px' }}>70%</th>
-            <th style={{ border: '1px solid white', padding: '8px' }}>OVERALL TOTAL 30% + 70%</th>
-            <th style={{ border: '1px solid white', padding: '8px' }}>POSITION</th>
+	const [formData, setFormData] = useState({
+		name: '',
+		exercise_score: '',
+		test_score: '',
+		homework_score: '',
+		exam_score: ''
+	});
 
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item) => (
-            <tr key={item.id}>
-              <td style={{ border: '1px solid white', padding: '8px' }}>{item.id}</td>
-              <td style={{ border: '1px solid white', padding: '8px' }}>{item.name}</td>
-              <td style={{ border: '1px solid white', padding: '8px' }}>{item.exercise}</td>
-              <td style={{ border: '1px solid white', padding: '8px' }}>{item.class_test}</td>
-              <td style={{ border: '1px solid white', padding: '8px' }}>{item.homework}</td>
-              <td style={{ border: '1px solid white', padding: '8px' }}>{item.total_class_score}</td>
-              <td style={{ border: '1px solid white', padding: '8px' }}>{item.to_30}</td>
-              <td style={{ border: '1px solid white', padding: '8px' }}>{item.term_exam}</td>
-              
-              <td style={{ border: '1px solid white', padding: '8px' }}>{item.to_70}</td>
-              <td style={{ border: '1px solid white', padding: '8px' }}>{item.overall}</td>
-              <td style={{ border: '1px solid white', padding: '8px' }}>{item.position}</td>
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setFormData(prevState => ({
+			...prevState,
+			[name]: value
+		}));
+	};
 
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
+	const handleSubmit = (e) => {
+		e.preventDefault();
 
-export default Table;
+		// Create a JavaScript object to store the form data
+		const student = {
+			name: formData.name,
+			exercise_score: formData.exercise_score,
+			test_score: formData.test_score,
+			homework_score: formData.homework_score,
+			exam_score: formData.exam_score
+		};
+
+
+		// Perform any other actions with the jsObject as needed
+		student_data.push(student)
+		console.log('student data is', student_data)
+	};
+
+	const [showForm, setShowForm] = useState(false)
+
+	const handleShow = (value) => {
+		setShowForm(value)
+		console.log('do re mi fa so', student_data)
+	}
+
+	const handleClear = () => {
+
+		document.getElementById('name').value = '';
+		document.getElementById('exercise_score').value = '';
+		document.getElementById('test_score').value = '';
+		setShowForm(false)
+	}
+
+	return (
+		<div>
+			<button className='button' onClick={() => handleShow(true)}>Add Entry</button>
+			<div className={showForm === true ? "form_modal show_form" : "form_modal"}>
+
+				<div className='form_container'>
+
+					<div className="close">
+						<button onClick={() => handleShow(false)}>Close</button>
+					</div>
+
+					<form action="/" method='post' onSubmit={handleSubmit}>
+						<div className='form_field'>
+							<label htmlFor="name">Student Name</label>
+							<input type="text" id='name' name='name' value={formData.name} onChange={handleChange} placeholder='Enter Student Name' />
+						</div>
+						<div className='form_field'>
+							<label htmlFor="exercise_score">Exercise Assignment</label>
+							<input type="text" id='exercise_score' name='exercise_score' value={formData.exercise_score} onChange={handleChange} placeholder='Enter Score' />
+						</div>
+						<div className='form_field'>
+							<label htmlFor="test_score">Class Test</label>
+							<input type="text" id='test_score' name="test_score" value={formData.test_score} onChange={handleChange} placeholder='Enter Score' />
+						</div>
+						<div className='form_field'>
+							<label htmlFor="homework_score">Home Work</label>
+							<input type="text" id='homework_score' name='homework_score' value={formData.homework_score} onChange={handleChange} placeholder='Enter Score' />
+						</div>
+						<div className='form_field'>
+							<label htmlFor="exam_score">Term Exam</label>
+							<input type="text" id='exam_score' name="exam_score" value={formData.exam_score} onChange={handleChange} placeholder='Enter Score' />
+						</div>
+						<button className='form_button' onClick={() => handleClear()}>Add Entry</button>
+					</form>
+				</div>
+			</div>
+
+			<section className="table-container">
+				<table className="table">
+					<thead className="table-heading">
+						<tr>
+							<th colSpan={15} className='class-info'>
+								<div className='class-info__container'>
+									<div className='class-data'>
+										<span>Subject.....................</span>
+										<span>Class.........................</span>
+										<span>Teacher.....................</span>
+									</div>
+									<div className="class-data">
+										<span>Year.....................</span>
+										<span>Term....................</span>
+										<span>No. on roll............</span>
+									</div>
+								</div>
+
+							</th>
+						</tr>
+						<tr className="numbers">
+							{numbers.map((number) => {
+								return (<td key={number.toString()} className={`number number-${number}`}>
+									<span>{number}</span>
+								</td>
+								)
+							})}
+						</tr>
+						<tr className="sub_headings">
+							{sub_headings.map(sub_heading => {
+								return (
+									<td className='td-container'>
+										<div className="sub_heading">
+											<span>{sub_heading}</span>
+										</div>
+									</td>
+								)
+							})}
+							<td className="td-container">
+								{position.map((letter, i) => {
+									return (
+										<div key={letter + i.toString()} className='sub_heading position'>
+											<span>{letter}</span>
+										</div>
+									)
+								})}
+							</td>
+						</tr>
+					</thead>
+					< Entry props={student_data} />
+				</table>
+			</section>
+		</div>
+
+	)
+}
+
+export default Table
