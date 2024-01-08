@@ -25,7 +25,6 @@ dist-ssr
 *.env
 
 .env
-*.json
 *__pycache__
 *cache
 *tokens
